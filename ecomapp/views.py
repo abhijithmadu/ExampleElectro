@@ -987,7 +987,7 @@ def otp_login(request):
             otp = random.randint(100000,999999)
             strotp=str(otp)
             account_sid ='AC575efb983ed0da194d2974bebbffe58d'
-            auth_token ='a2d76ee0be8180c9829fd22621d9213f'
+            auth_token ='4539429f55a6564abc6a04eff8a4867a'
             client = Client(account_sid, auth_token)
             message = client.messages \
                 .create(
