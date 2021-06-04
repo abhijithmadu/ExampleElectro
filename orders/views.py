@@ -12,7 +12,7 @@ from django.contrib import messages
 import json
 # Create your views here.
 def razorpay(request):
-    order_id=val()
+    order_id=request.session['order_id']
     print(order_id)
     order_data=Order.objects.get(user=request.user,is_ordered=False,order_number=order_id)
     cart_items=CartItem.objects.filter(user=request.user)
@@ -57,8 +57,8 @@ def razorpay(request):
     
 
 def payments(request,total=0,quantity=0):
-    
-    order_id = val()
+    order_id=request.session['order_id']
+    # order_id = val()
     
     order=Order.objects.get(user=request.user,is_ordered=False,order_number=order_id)
 
@@ -178,7 +178,7 @@ def payoption(request):
 
 
 def ordercomplete(request):
-    order_id=val()
+    order_id=request.session['order_id']
     orders_data=Order.objects.get(order_number=order_id)
     
     order=OrderProduct.objects.filter(order=orders_data)
@@ -245,9 +245,9 @@ def place_order(request,total=0,quantity=0):
             #     'grand_total':grand_total
             # }
             request.session['order_id']=order_number
-            global val
-            def val():
-                return order_number
+            # global val
+            # def val():
+            #     return order_number
 
             return redirect('payments')
         
