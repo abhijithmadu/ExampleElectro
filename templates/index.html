@@ -171,9 +171,9 @@ $(document).ready(function() {
 
 				<!-- <div class="price mt-1">&#8377; {{pro.price}}</div> price-wrap.// -->
 				{% if pro.offer_price %}
-				<var class="price h5">${{pro.product_price}}  </var> <s style="color:red">${{pro.price}}</s> <small>{{pro.offer_percentage}} %offf</small>
+				<var class="price h5">₹{{pro.product_price}}  </var> <s style="color:red">₹{{pro.price}}</s> <small>{{pro.offer_percentage}} %offf</small>
 				{% else %}
-				<var class="price h5">${{pro.price}}</var> 
+				<var class="price h5">₹{{pro.price}}</var> 
 				{% endif %}
 				<a href="{% url 'product_details' pro.slug %}" class="btn btn-block btn-success">Added to cart </a>
 			</figcaption>

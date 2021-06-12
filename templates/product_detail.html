@@ -189,9 +189,9 @@ $(document).ready(function() {
 
 	<div class="mb-3"> 
 		{% if product.offer_price %}
-		<var class="price h4">${{product.product_price}}  </var> <s style="color:red">${{product.price}}</s> <b>{{product.offer_percentage}} %offf</b>
+		<var class="price h4">₹{{product.product_price}}  </var> <s style="color:red">₹{{product.price}}</s> <b>{{product.offer_percentage}} %offf</b>
 		{% else %}
-		<var class="price h4">${{product.price}}</var> 
+		<var class="price h4">₹{{product.price}}</var> 
 		{% endif %}
 	</div> 
 
