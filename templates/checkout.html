@@ -11,6 +11,57 @@
     <div class="row">
    
         <aside class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                  <h5>Choose Address</h5>
+                  <br>
+                  <a href="{% url 'address'%}" class="btn btn-sm btn-info">Add Address</a>
+                </div>
+                {% for address in addresses %}
+                <div class="card-body">
+                  
+                  <p class="card-text">{{address.first_name}} {{address.city}} {{address.state}} {{address.country}} {{address.phone}}</p>
+                  <input type="radio" value="{{address.id}}" name="address" style="width: 18px; height:18px">
+                  <br>
+                  <br>
+                  <a href="{% url 'editaddress' address.id %}">Edit Address</a>
+                </div>
+                
+                 <hr>
+    
+                {% endfor %}
+                <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+                <script>
+                    $(document).ready(function(){
+                        $('input[type="radio"]').click(function(){
+                            var address=$(this).val();
+                            console.log(address)
+    
+                            $.ajax({
+                                url:"{% url 'collectaddress' %}",
+                                type:"GET",
+                                data:{'address':address},
+                                success:function(data){
+                                    console.log(data)
+                                    $("#firstname").val(data.first_name);
+                                    $("#lastname").val(data.first_name);
+                                    $("#phone").val(data.phone);
+                                    $("#email").val(data.email);
+                                    $("#address1").val(data.address1);
+                                    $("#address2").val(data.address2);
+                                    $("#city").val(data.city);
+                                    $("#state").val(data.state);
+                                    $("#country").val(data.country);
+                                    
+                                }
+                            })
+                        })
+                    })
+                </script>
+                
+               
+              </div>
+    
     <div class="card">
         <div class="card-body">
             <h4 class= "card-title mb-4">Billing Address</h4>
@@ -149,7 +200,7 @@
             </div> <!-- card-body.// -->
             </div> <!-- card.// -->
 
-            <div class="card">
+            <!-- <div class="card">
                 <div class="card-header">
                   <h5>Choose Address</h5>
                   <br>
@@ -199,7 +250,7 @@
                 
                
               </div>
-    
+     -->
     </aside> <!-- col.// -->
     
     
